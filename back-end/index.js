@@ -5,7 +5,6 @@ const loginRouter = require('./routes/LoginRoute')
 
 app.use(loginRouter)
 
-
 app.get('/', (req, res)=>{
     res.send('<h1>Ola mundo</h1>')
 
