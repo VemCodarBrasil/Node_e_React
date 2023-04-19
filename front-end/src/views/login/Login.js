@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {LoginSchema} from '../validation/loginError'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
 
 const Login = () => {
   const [loginError, setLoginError] = useState()
@@ -9,9 +10,14 @@ const Login = () => {
 
   const handleSubmit = async (values) =>{
     try {
-      console.log(values)
+
+      const response = await axios.post('http://localhost:3001/login',{
+        email: values.email,
+        password: values.password
+      })
+
       
-      if(values.email === 'vem.codar.brasil@gmail.com' && values.password ==='1234567') 
+      if(values.email === response.data.email && values.password === response.data.password) 
         URL('/preco')
       else throw new Error()
 
